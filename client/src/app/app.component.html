@@ -1,0 +1,148 @@
+<!-- WHEN LOGGED IN -->
+<div *ngIf="identity" class="navigation col-lg-1 col-md-12">
+  <div class="flex-nav">
+    <h1 class="head-title">
+
+      <a class="flixlist" routerLink="/" href="https://fontmeme.com/netflix-font/"><img
+          src="https://fontmeme.com/permalink/200828/b969089a379eaf63d3df1ea2c138fc78.png" alt="netflix-font"
+          border="0"></a>
+
+    </h1>
+    <nav id="navigation">
+      <a [routerLink]="['/movies', identity._id ,1]" routerLinkActive="active">
+        <span class="glyphicon glyphicon-film" aria-hidden="true"></span>
+        Movies
+      </a>
+    </nav>
+  </div>
+
+  <nav id="user_logged">
+    <div class="avatar">
+      <div class="userImage">
+        <img id="imageLogged" src="{{url + 'get-image-user/' + identity.image}}" alt="userAvatar">
+      </div>
+      <span id="identity_name">
+        {{identity.name}}
+      </span>
+    </div>
+
+    <div class="user-info">
+      <a routerLink="/my-info" routerLinkActive="active">
+        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+        My Info
+      </a>
+      <a class="log-out" (click)="logout()">
+        <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+        Log Out
+      </a>
+    </div>
+  </nav>
+</div>
+
+<div [class.hidden]="!identity" class="central col-lg-11">
+  <router-outlet></router-outlet>
+</div>
+
+<!-- NOT LOGGED IN -->
+<nav class="navbar navbar-inverse">
+  <div class="container">
+    <div class="brand">
+      <a class="flixlist" href="https://fontmeme.com/netflix-font/"><img
+          src="https://fontmeme.com/permalink/200828/b969089a379eaf63d3df1ea2c138fc78.png" alt="netflix-font"
+          border="0"></a>
+    </div>
+  </div>
+</nav>
+
+<div *ngIf="!identity" class="center-forms col-lg-12 col-md-6">
+  <div class="col-lg-3 col-lg-offset-2">
+    <h1>Log In</h1>
+    <!-- Show error message if there is one -->
+    <div *ngIf="errorMessage">
+      <div class="alert alert-danger">
+        <strong>Error:</strong> {{errorMessage}}
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+
+        <!-- Template Driven Form for Log In -->
+        <!-- Create an angular form and event listener for submitting -->
+        <form class="col-md-7" #loginForm="ngForm" (ngSubmit)="onSubmit()">
+          <p>
+            <label for="Email">Email:</label>
+            <!-- Two way binding on user.email (on class) and #email (on template) -->
+            <input type="email" class="form-control" name="email" #email="ngModel" [(ngModel)]="user.email" required>
+            <span *ngIf="!email.valid && email.touched">Please enter a valid Email</span>
+          </p>
+          <p>
+            <label for="Passowrd">Password:</label>
+            <!-- Two way binding on user.password (on class) and #password (on template) -->
+            <input type="password" class="form-control" name="password" #password="ngModel" [(ngModel)]="user.password"
+              required>
+          </p>
+
+          <input type="submit" value="Log In" class="btn btn-danger">
+        </form>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-lg-4 col-lg-offset-1">
+    <h1>Sign Up</h1>
+    <div *ngIf="alertRegister">
+      <div class="alert alert-success">
+        {{alertRegister}}
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <form class="col-md-10" #registerForm="ngForm" (ngSubmit)="onSubmitRegister()">
+          <p>
+            <label for="Name">Name:</label>
+            <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="user_register.name"
+              required>
+            <span *ngIf="!name.valid && name.touched">Please enter a valid Name</span>
+          </p>
+          <p>
+            <label for="Lastname">Last name:</label>
+            <input type="text" class="form-control" name="lastname" #lastname="ngModel"
+              [(ngModel)]="user_register.lastname" required>
+            <span *ngIf="!lastname.valid && lastname.touched">Please enter a valid Last Name</span>
+          </p>
+          <p>
+            <label for="Email">Email:</label>
+            <!-- Two way binding on user_register.email (on class) and #email (on template) -->
+            <input type="email" class="form-control" name="email" #email="ngModel" [(ngModel)]="user_register.email"
+              required>
+            <span *ngIf="!email.valid && email.touched">Please enter a valid Email</span>
+          </p>
+          <p>
+            <label for="Password">Password:</label>
+            <!-- Two way binding on user_register.password (on class) and #password (on template) -->
+            <input type="password" class="form-control" name="password" #password="ngModel"
+              [(ngModel)]="user_register.password" required>
+            <span *ngIf="!password.valid && password.touched">Please enter a valid password</span>
+          </p>
+          <p>
+            <label for="Address">Address:</label>
+            <!-- Two way binding on user_register.address (on class) and #address (on template) -->
+            <input type="text" class="form-control" name="address" #address="ngModel"
+              [(ngModel)]="user_register.address" required>
+            <span *ngIf="!address.valid && address.touched">Please enter a valid address</span>
+          </p>
+          <p>
+            <label for="Phone">Phone:</label>
+            <!-- Two way binding on user_register.phone (on class) and #phone (on template) -->
+            <input type="tel" class="form-control" name="phone" #phone="ngModel" [(ngModel)]="user_register.phone"
+              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required placeholder="Format: 123-456-7890">
+            <span *ngIf="!phone.valid && phone.touched">Please enter a valid phone</span>
+          </p>
+
+          <input type="submit" value="Sign Up!" class="btn btn-danger">
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

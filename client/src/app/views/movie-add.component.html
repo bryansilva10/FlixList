@@ -1,0 +1,66 @@
+<div class="add-form col-lg-4" *ngIf="identity">
+  <h1>{{title}}</h1>
+
+  <div *ngIf="alertMessage">
+    <div class="alert alert-success">
+      {{alertMessage}}
+    </div>
+  </div>
+
+  <!-- FORM TO ADD NEW MOVIE -->
+  <form #formMovie="ngForm" (ngSubmit)="onSubmit()">
+    <p>
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="movie.name" required>
+      <span *ngIf="!name && name.touched">Movie name is not valid</span>
+    </p>
+    <p>
+      <label for="genre">Genre:</label>
+      <select name="genre" class="form-control" #genre="ngModel" [(ngModel)]="movie.genre" required>
+        <option value="" selected disabled hidden>Choose here</option>
+        <option value="Action">Action</option>
+        <option value="Horror">Horror</option>
+        <option value="Suspense">Suspense</option>
+        <option value="Romance">Romance</option>
+        <option value="Comedy">Comedy</option>
+        <option value="Animated">Animated</option>
+        <option default value="Sci-Fi">Sci-Fi</option>
+      </select>
+      <span *ngIf="!genre && genre.touched">Genre is not valid</span>
+    </p>
+    <p>
+      <label for="year">Year:</label>
+      <input type="number" class="form-control" name="year" #year="ngModel" [(ngModel)]="movie.year" min="1930"
+        max="2021" required>
+      <span *ngIf="!year && year.touched">Movie has to be a number between 1930 & 2021</span>
+    </p>
+    <p>
+      <label for="duration">Duration:</label>
+      <input type="text" class="form-control" name="duration" #duration="ngModel" [(ngModel)]="movie.duration" required>
+      <span *ngIf="!duration && duration.touched">Movie Duration is not valid</span>
+    </p>
+    <p>
+      <label for="rating">My Rating (1-10):</label>
+      <input type="number" class="form-control" name="rating" #rating="ngModel" [(ngModel)]="movie.rating" min="1"
+        max="10" step="1" style="width: 15%; " required>
+      <span *ngIf="!name && name.touched">Movie rating is not valid</span>
+    </p>
+
+    <!-- HIDDEN INPUT TO PASS/SUBMIT IDENTITY._ID of movie item owner -->
+    <input type="text" style="display: none;" name="owner" #owner="ngModel" [(ngModel)]="identity._id">
+
+    <div *ngIf="isEdit">
+      <div class="movieImageForEdit" *ngIf="movie.image && movie.image != 'null'">
+        <img src="{{url + 'get-image-movie/' + movie.image }}">
+      </div>
+
+      <p>
+        <label for="MovieImage">Upload Movie Image</label>
+        <input type="file" placeholder="Upload Image" (change)="fileChangeEvent($event)">
+      </p>
+
+    </div>
+
+    <input type="submit" class="btn btn-success" value="{{title}}" [disabled]="!formMovie.form.valid">
+  </form>
+</div>

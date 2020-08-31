@@ -1,0 +1,53 @@
+<!-- Form to edit personal info -->
+<div class="col-lg-6">
+  <h1>{{title}}</h1>
+  <div *ngIf="alertUpdate">
+    <div class="alert alert-success">
+      {{alertUpdate}}
+    </div>
+  </div>
+  <form class="col-md-10" #updateUserForm="ngForm" (ngSubmit)="onSubmit()">
+    <p>
+      <label for="Name">Name:</label>
+      <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="user.name" required>
+      <span *ngIf="!name.valid && name.touched">Please enter a valid Name</span>
+    </p>
+    <p>
+      <label for="Lastname">Last name:</label>
+      <input type="text" class="form-control" name="lastname" #lastname="ngModel" [(ngModel)]="user.lastname" required>
+      <span *ngIf="!lastname.valid && lastname.touched">Please enter a valid Last Name</span>
+    </p>
+    <p>
+      <label for="Email">Email:</label>
+      <!-- Two way binding on user.email (on class) and #email (on template) -->
+      <input type="email" class="form-control" name="email" #email="ngModel" [(ngModel)]="user.email" required>
+      <span *ngIf="!email.valid && email.touched">Please enter a valid Email</span>
+    </p>
+    <p>
+      <label for="Address">Address:</label>
+      <!-- Two way binding on user_register.address (on class) and #address (on template) -->
+      <input type="text" class="form-control" name="address" #address="ngModel" [(ngModel)]="user.address" required>
+      <span *ngIf="!address.valid && address.touched">Please enter a valid address</span>
+    </p>
+    <p>
+      <label for="Phone">Phone:</label>
+      <!-- Two way binding on user_register.phone (on class) and #phone (on template) -->
+      <input type="tel" class="form-control" name="phone" #phone="ngModel" [(ngModel)]="user.phone"
+        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required placeholder="Format: 123-456-7890">
+      <span *ngIf="!phone.valid && phone.touched">Please enter a valid phone</span>
+    </p>
+
+    <div class="editImage" *ngIf="user.image && user.image != 'null'">
+      <img src="{{url + 'get-image-user/' + user.image}}" style="width: 100px" alt="userAvatar">
+    </div>
+
+    <p>
+      <label for="avatar">
+        Upload Picture:
+      </label>
+      <input type="file" placeholder="Upload Image..." (change)="fileChangeEvent($event)">
+    </p>
+
+    <input type="submit" value="Update Info" class="btn btn-primary">
+  </form>
+</div>

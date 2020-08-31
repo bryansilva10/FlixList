@@ -1,0 +1,8 @@
+<div *ngIf="identity !== 'null'" class="col-lg-6 col-lg-offset-3">
+  <div class="jumbotron">
+    <h1>Welcome to <span>FlixList</span>!</h1>
+    <p>Save your favorite Movie Titles for later and don't ever forget to watch them!</p>
+    <p><a [routerLink]="['/movies/', identity._id, 1]" class="btn btn-danger btn-lg" role="button">Check Your Movies</a>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,304 @@
+html, body {
+	margin: 0px;
+	background: #eee;
+}
+
+.active {
+	border-bottom: 2px solid #388c14;
+	padding-bottom: 4px;
+}
+
+.central {
+	height: 100vh;
+	overflow-y: scroll;
+}
+
+.head-title {
+	font-size: 30px;
+	font-weight: bold;
+	text-transform: uppercase;
+	margin-bottom: 25px;
+  display: block;
+}
+
+.navigation {
+	text-align: center;
+	color:white;
+	background-color: #1c1c1f;
+  height: 100vh;
+}
+
+.navigation a {
+	color: #ddd;
+	margin-top: 100px;
+	margin-bottom: 60px;
+	display: block;
+	text-decoration: none;
+}
+
+.navigation a:hover, a:focus {
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.navigation .glyphicon {
+	font-size: 30px;
+	display: block;
+	width: 100%;
+}
+
+#user_logged {
+	background-color: #1c1c1f;
+	position: absolute;
+	bottom: 100px;
+	border-top: 1px solid #444;
+	width: 75%;
+	text-decoration: center;
+}
+
+#user_logged .log-out:hover{
+	color: rgb(167, 52, 52);
+	cursor: pointer;
+}
+
+#user_logged .userImage {
+	background-color: #eee;
+	border-radius: 100px;
+	height: 57px;
+	width: 57px;
+	margin: 0px auto;
+	margin-top: 100px;
+	margin-bottom: 10px;
+  overflow: hidden;
+}
+
+#user_logged .userImage img {
+	width: 57px;
+}
+
+#user_logged a {
+  margin-top: 50px;
+}
+
+.jumbotron h1 span{
+  color: rgba(255, 0, 0, 0.769);
+}
+
+.movieImageForEdit img {
+  width: 300px;
+}
+
+.movieList {
+	margin: 0;
+	padding: 0px;
+	margin-top: 20px;
+	margin-left: 250px;
+  list-style: none;
+  min-height: 800px;
+  margin-bottom: 800px;
+}
+
+.movieItem {
+  width: 25% !important;
+  margin: 0px;
+  margin-bottom: 50px;
+	padding-right: 0px !important;
+	padding-left: 0px !important;
+	height: 680px;
+	border: 1px solid #444;
+	margin-left: 25px;
+}
+
+.movieItem .movieImage{
+  height: 570px;
+	width: 100%;
+	overflow: hidden;
+	background: black;
+}
+
+.movieItem .movieImage img {
+  height: 100%;
+	min-width: 100%;
+}
+
+.movieItem .movieName {
+	color: white;
+	padding: 10px;
+	background: #222326;
+}
+
+.confirmed {
+	margin-top: -30px;
+	position: absolute;
+	background: #222326;
+}
+
+/* MEDIA QUERY FOR MEDIUM 1600 */
+@media(max-width: 1200px) {
+  .navigation {
+    max-height: 250px;
+  }
+
+  .navigation .flex-nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .navigation .flixlist {
+    margin-top: -20px;
+    padding-top: 20px;
+  }
+
+  .navigation nav a{
+    margin-top: 18px;
+  }
+
+  .active {
+    width: 60px;
+  }
+
+  #user_logged {
+    bottom: 30px;
+    width: 95%;
+    display: flex;
+    /* justify-content: space-between; */
+    margin: 0 auto;
+  }
+
+  .avatar {
+    margin-top: -75px;
+    margin-left: auto;
+    margin-right: 15px;
+  }
+
+  .user-info {
+    display: flex;
+    margin-right: auto;
+    margin-left: 15px;
+  }
+
+  .user-info a {
+    margin: 20px;
+  }
+
+  .central {
+    height: 80vh;
+    margin: 5px 10px 20px 10px;
+  }
+
+  .movieList {
+    margin: 0 auto;
+    width: 800px;
+  }
+
+  .movieItem {
+    width: 45% !important;
+    height: 620px;
+    margin-left: 5%;
+  }
+
+  .movieItem .movieImage {
+    height: 492px;
+  }
+
+  .form-control {
+    height: 50px;
+    font-size: 17px;
+  }
+
+  .btn {
+    font-size: 17px;
+    padding: 10px;
+  }
+
+  .confirmed {
+    margin-top: -47px;
+  }
+}
+
+/* MEDIA QUERY FOR SMALL 780 */
+@media(max-width: 780px) {
+
+  .navigation {
+    max-height: 250px;
+  }
+
+  .navigation .flex-nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .navigation .flixlist {
+    margin-top: -20px;
+    padding-top: 20px;
+  }
+
+  .navigation nav a{
+    margin-top: 18px;
+  }
+
+  .active {
+    width: 60px;
+  }
+
+  #user_logged {
+    bottom: 30px;
+    width: 95%;
+    display: flex;
+    /* justify-content: space-between; */
+    margin: 0 auto;
+  }
+
+  .avatar {
+    margin-top: -75px;
+    margin-left: auto;
+    margin-right: 15px;
+  }
+
+  .user-info {
+    display: flex;
+    margin-right: auto;
+    margin-left: 15px;
+  }
+
+  .user-info a {
+    margin: 20px;
+  }
+
+  .central {
+    height: 80vh;
+    margin: 5px auto 20px auto;
+  }
+
+  .movieList {
+    margin: 0 auto;
+    width: 350px;
+  }
+
+  .movieItem {
+    width: 350px !important;
+    height: 620px;
+    margin: 15px auto;
+  }
+
+  .movieItem .movieImage {
+    height: 492px;
+  }
+
+  .form-control {
+    height: 50px;
+    font-size: 17px;
+  }
+
+  .btn {
+    font-size: 17px;
+    padding: 10px;
+  }
+
+  .confirmed {
+    margin-top: -47px;
+  }
+}

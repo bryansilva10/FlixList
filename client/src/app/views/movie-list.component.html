@@ -1,0 +1,37 @@
+<div class="head-page" *ngIf="identity">
+  <h1>{{title}}</h1>
+  <a class="btn btn-danger" [routerLink]="['/create-movie', identity._id ]" *ngIf="identity">Add
+    Movie</a>
+
+  <ul class="pagination pull-right">
+    <li><a [routerLink]="['/movies/', identity._id, prevPage]">&laquo;</a></li>
+    <li><a [routerLink]="['/movies/', identity._id, nextPage]">&raquo;</a></li>
+  </ul>
+</div>
+
+<div class="clearfix"></div>
+
+<ul class="movieList" *ngIf="identity">
+  <li *ngFor="let movie of movies" class="col-lg-3 col-md-2 movieItem">
+    <div class="movieImage">
+      <img src="{{url + 'get-image-movie/' + movie.image}}">
+    </div>
+
+    <div class="movieName">
+      <p>{{movie.name}} ({{movie.year}}) - <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+        {{movie.rating}}</p>
+      <p><span class="glyphicon glyphicon-film" aria-hidden="true"></span> {{movie.genre}} - <span
+          class="glyphicon glyphicon-time" aria-hidden="true"></span> {{movie.duration}}</p>
+
+      <div class="buttons btn-toolbar" *ngIf="identity">
+        <a class="btn btn-sm btn-warning" [routerLink]="['/edit-movie/', movie._id]">Edit</a>
+        <a class="btn btn-sm btn-danger" (click)="onDeleteConfirm(movie._id)">Delete</a>
+      </div>
+
+      <div class="confirmed btn-toolbar" *ngIf="confirmed == movie._id">
+        <a class="btn btn-sm btn-danger" (click)="onDeleteMovie(movie._id)">Delete</a>
+        <a class="btn btn-sm btn-primary" (click)="onCancelMovie()">Cancel</a>
+      </div>
+    </div>
+  </li>
+</ul>
