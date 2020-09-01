@@ -47,6 +47,11 @@ label {
 
 /* MEDIA QUERY FOR MEDIUM 1600 */
 @media(max-width: 1600px) {
+
+  .navbar {
+    display: block;
+  }
+
   .panel {
     width: 500px;
   }

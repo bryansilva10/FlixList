@@ -149,9 +149,9 @@ exports.deleteMovie = (req, res, next) => {
 	const movieId = req.params.id;
 
 	//find by id and delete
-	Song.findByIdAndRemove(movieId)
+	Movie.findByIdAndRemove(movieId)
 		.then(removedMovie => {
-			//check if stored song is not defined or found
+			//check if stored movie is not defined or found
 			if (!removedMovie) {
 				//404 error
 				res.status(404).send({ message: 'Movie could not be Deleted' });
